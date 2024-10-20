@@ -17,8 +17,6 @@ jobs:
           java-version: '17'
       - uses: Xotabu4/selenoid-github-action@v2
       # запускаем тесты
-      - name: Установить права на выполнение gradlew
-        run: chmod +x ./gradlew
       - run: ./gradlew clean test -Dselenide.remote=http://localhost:4444/wd/hub
       # скачиваем историю тестов
       - uses: actions/checkout@v2
@@ -28,7 +26,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
       # генерируем отчет
-      - uses: simple-elf/allure-report-action@master
+      - uses: simple-elf/allure-report-action@main
         if: always()
         with:
           gh_pages: gh-pages
